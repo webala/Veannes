@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, 'shop/home.html')
+
+def cart(request):
+    return render(request, 'shop/cart.html')

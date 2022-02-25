@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="cart-section">
+    <legend>Cart items</legend>
+    <div class="cart-item">
+        <img src="{% static 'images/placeholder.png' %}" alt="" class="product-image">
+        <div class="product-desc">
+            <p>Earing</p>
+            <p>Quantity: 5</p>
+        </div>
+        <div class="product-action">
+            <img src="{% static 'images/up-arrow.png' %}" alt="" class="product-image">
+            <p>Total: ksh 125</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
