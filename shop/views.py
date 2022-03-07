@@ -4,7 +4,10 @@ from django.shortcuts import render
 
 
 def home(request):
-    return render(request, 'shop/home.html')
+    return render(request, 'shop/store.html')
 
 def cart(request):
     return render(request, 'shop/cart.html')
+
+def checkout(request):
+    return render(request, 'shop/checkout.html')
