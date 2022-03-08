@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
 
-<div class="store">
-    
-    {% for product in products %}
+<div class="shop-dashboard">
+    <div class="shop-name">
+        <h1 class="logo">{{logo}}</h1>
+        <h2>{{shop.name}}</h2>
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'add_product' shop.name %}"><i class="uil uil-plus"></i> Add product</a>
+        <a href="#"><i class="uil uil-cog"></i> Shop Settings</a>
+    </div>
+
+    <div class="store">
+        {% for product in products %}
         <div class="product">
             {% if product.image %}
                 <img src="{{product.image_url}}" alt="placeholder">
@@ -19,16 +28,16 @@
                     <p>Price: ksh 25</p>
                 </div>
                 
-                <div class="btn-group">
-                    <button class='btn btn-sm btn-primary update-cart' data-action='add' data-product={{product.id}}>Add</button>
+                <div>
+                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm"><i class="uil uil-trash-alt"></i></a>
                     <button class="btn btn-sm btn-outline-success update-cart">View</button>
                 </div>   
             </div>
         </div>
         {% endfor %}
-        
-      
+    </div>
 </div>
+
 
 
 

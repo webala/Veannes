@@ -1,19 +1,32 @@
 from django.db import models
 from django.contrib.auth.models import User
-from accounts.models import Vendor
+
 
 # Create your models here.
 
 
 class Shop(models.Model):
     name = models.CharField(max_length=200)
-    owner = models.ForeignKey(Vendor, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     products_type = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    image = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def image_url(self):
+        if self.image:
+            return getattr(self.image, 'url', None)
+        return None
 
 
 class Cart(models.Model):

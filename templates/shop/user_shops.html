@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% for shop in shops %}
+
+<div class="user-shops">
+    <ul>
+        <li><a href="{% url 'shop_dashboard' shop.name %}">{{shop.name}}</a></li>
+    </ul>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -5,9 +5,12 @@
     </div>
 
     <div class="nav-items">
+        {% if isVendor %}
+            <a href="{% url 'shops' %}" class="login-btn">My Shops</a>
+        {% endif %}
         <a href="#" class="login-btn">Categories</a>
-        <a href="#" class="login-btn">Login</a>
-        <a href="#" class="register-btn">Register</a>
+        <a href="{% url 'login' %}" class="login-btn">Login</a>
+        <a href="{% url 'register' %}" class="register-btn">Register</a>
         <a href="/cart" class="cart-btn"><img src="{% static 'images/cart.png' %}" alt=""></a>
     </div>
 </nav>
