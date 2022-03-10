@@ -98,6 +98,8 @@ header .nav-bar {
     border-radius: 10px;
 }
 
+
+
 .cart-actions i {
     background: #03a9fc;
     border-radius: 50%;
@@ -112,6 +114,17 @@ header .nav-bar {
     grid-template-columns: repeat(2, 15%);
     column-gap: 300px;
     row-gap: 50px;
+}
+.checkout .items i {
+    transition: 0.3s ease;
+}
+.checkout .items i:hover {
+    color: #ab050b;
+    font-size: 1.5em;
+}
+
+.cart .cart-btns {
+    margin: 20px 100px;
 }
 
 .checkout .summary {

@@ -30,7 +30,16 @@ def cart(request):
     return render(request, 'shop/cart.html', context)
 
 def checkout(request):
-    return render(request, 'shop/checkout.html')
+    user = request.user
+    cart = Cart.objects.get(user=user)
+
+    cart_items = cart.cartitem_set.all()
+
+    context = {
+        'cart_items': cart_items
+    }
+
+    return render(request, 'shop/checkout.html', context)
 
 def add_product(request, shop_name):
     form = AddProductForm(request.POST or None, request.FILES or None)
@@ -108,8 +117,9 @@ def update_cart(request):
 
         cart_item.save()
 
-        if cart_item.quantity <= 0:
+        if cart_item.quantity <= 0 or action == 'delete':
             cart_item.delete()
+        
 
         return Response('Cart item updated', 200)
     

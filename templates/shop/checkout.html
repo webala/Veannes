@@ -5,42 +5,22 @@
 <div class="checkout">
 
     <div class="items">
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
-        <div class="checkout-item">
-            <h2>Earing(2) @ksh25</h2>
-            <p>Total: ksh 50</p>
-            <i class="uil uil-trash-alt"></i>
-        </div>
+
+        {% for item in cart_items %}
+            <div class="checkout-item">
+                <h2>{{item.product.name}} ({{item.quantity}}) @ksh25</h2>
+                <p>Total: ksh 50</p>
+                <i class="uil uil-trash-alt update-cart" data-action='delete' data-product="{{item.product.id}}"></i>
+            </div>
+        {% endfor %}
+        
+        
     </div>
 
     <div class="summary">
         <h2>Total: ksh 1000</h2>
         <button class="btn btn-outline-success"><i class="uil uil-money-bill"></i>Complete Order</button>
-        <button class="btn"><i class="uil uil-arrow-left"></i> Back to cart</button>
+        <a href="{% url 'cart' %}" class="btn"><i class="uil uil-arrow-left"></i> Back to cart</a>
     </div>
 
     
