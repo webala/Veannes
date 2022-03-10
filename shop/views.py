@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse
 from PIL import Image
@@ -6,11 +7,17 @@ from rest_framework.response import Response
 from .forms import AddProductForm
 from .models import CartItem, Product, Shop, Cart
 from .serializers import UpdateCartSerializer
+from .utils import cart_data
 # Create your views here.
 
 
 def home(request):
-    isVendor = bool(Shop.objects.filter(owner=request.user))
+
+    if request.user.is_authenticated:
+        isVendor = bool(Shop.objects.filter(owner=request.user))
+    else:
+        isVendor = False
+
     products = Product.objects.all()
     context = {
         'isVendor': isVendor,
@@ -18,25 +25,24 @@ def home(request):
     }
     return render(request, 'shop/store.html', context)
 
-def cart(request):
-    user = request.user
-    cart = Cart.objects.get(user=user)
 
-    cart_items = cart.cartitem_set.all()
+
+
+def cart(request):
+    cart_items = cart_data(request)
 
     context = {
-        'cart_items': cart_items
+        'cart_items': cart_items['items'],
+        'cart': cart_items['cart']
     }
     return render(request, 'shop/cart.html', context)
 
 def checkout(request):
-    user = request.user
-    cart = Cart.objects.get(user=user)
-
-    cart_items = cart.cartitem_set.all()
+    cart_items = cart_data(request)
 
     context = {
-        'cart_items': cart_items
+        'cart_items': cart_items['items'],
+        'cart': cart_items['cart']
     }
 
     return render(request, 'shop/checkout.html', context)

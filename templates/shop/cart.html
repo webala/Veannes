@@ -17,8 +17,8 @@
                 
                 <div class="item-desc">
                     <h2>{{item.product.name}} ({{item.quantity}})</h2>
-                    <p>@ksh 25</p>
-                    <p>Total: ksh 50</p>
+                    <p>@ksh {{item.product.price}}</p>
+                    <p>Total: ksh {{item.get_item_total}}</p>
                 </div>
                 <div class="cart-actions">
                     <i class="uil uil-plus update-cart" data-product="{{item.product.id}}" data-action="add"></i>
