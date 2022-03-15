@@ -13,9 +13,14 @@
         <h2>{{product.name}}</h2>
         <p>@ksh {{product.price}}</p>
         
-    </div>
+    </div> 
+
     <div class="cart-actions">
         <button class='btn btn-sm btn-primary update-cart' data-action='add' data-product={{product.id}}>Add To Cart</button>
-    </div>  
+    </div> 
+    
+    <div class="product-desc">
+        {{product.description}}
+    </div>
 </div>
 {% endblock %}

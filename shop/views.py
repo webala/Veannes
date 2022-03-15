@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse
-from PIL import Image
+from django.contrib import messages
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .forms import AddProductForm
@@ -131,13 +131,17 @@ def update_cart(request):
 
         if action == 'add':
             cart_item.quantity += 1
+            messages.add_message(request, messages.INFO, 'One {} added to cart'.format(product.name))
         elif action == 'remove':
             cart_item.quantity -= 1
+            if not cart_item.quantity <= 0:
+                messages.add_message(request, messages.INFO, 'One {} removed from cart'.format(product.name))
 
         cart_item.save()
 
         if cart_item.quantity <= 0 or action == 'delete':
             cart_item.delete()
+            messages.add_message(request, messages.INFO, '{} removed from cart'.format(product.name))
         
 
         return Response('Cart item updated', 200)
