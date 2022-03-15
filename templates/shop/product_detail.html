@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="product-detail">
+    {% if product.image %}
+        <img src="{{product.image_url}}" alt="placeholder">
+    {% else %}
+        <img src="{% static 'images/placeholder.png' %}" alt="placeholder">
+    {% endif %}
+
+    <div class="item-desc">
+        <h2>{{product.name}}</h2>
+        <p>@ksh {{product.price}}</p>
+        
+    </div>
+    <div class="cart-actions">
+        <button class='btn btn-sm btn-primary update-cart' data-action='add' data-product={{product.id}}>Add To Cart</button>
+    </div>  
+</div>
+{% endblock %}

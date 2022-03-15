@@ -99,3 +99,12 @@ const addCookieItem = (action, productId) => {
     document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/';
     location.reload()
 }
+
+//get number of cart items
+
+fetch('/cart_items')
+.then(response => response.json())
+.then(data => {
+    var cart_items = document.getElementById('cart_items')
+    cart_items.innerHTML = data.cart_items
+}).catch(error => console.log(error))

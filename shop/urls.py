@@ -7,7 +7,10 @@ from .views import (
     user_shops_list, 
     shop_dashboard,
     delete_product,
-    update_cart
+    update_cart,
+    cart_items,
+    all_shops_list,
+    product_detail
 )
 
 urlpatterns = [
@@ -19,4 +22,7 @@ urlpatterns = [
     path('shops/', user_shops_list, name='shops'),
     path('shop/<str:shop_name>', shop_dashboard, name='shop_dashboard'),
     path('update_cart/', update_cart, name='update_cart'),
+    path('cart_items/', cart_items, name='cart_items'),
+    path('all_shops/', all_shops_list, name='all_shops_list'),
+    path('product/<int:product_id>/', product_detail, name='product_detail'),
 ]

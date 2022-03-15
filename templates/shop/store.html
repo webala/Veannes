@@ -21,7 +21,7 @@
                 
                 <div class="btn-group">
                     <button class='btn btn-sm btn-primary update-cart' data-action='add' data-product={{product.id}}>Add</button>
-                    <button class="btn btn-sm btn-outline-success update-cart">View</button>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-outline-success">View</a>
                 </div>   
             </div>
         </div>

@@ -85,7 +85,7 @@ header .nav-bar {
     
 }
 
-.cart .cart-item {
+.cart .cart-item, .product-detail {
     display: flex;
     width: 40%;
     justify-content: space-between;
@@ -93,7 +93,7 @@ header .nav-bar {
     margin: 20px;
 }
 
-.cart .cart-item img {
+.cart .cart-item img{
     width: 35%;
     border-radius: 10px;
 }
@@ -174,8 +174,6 @@ form select {
     margin: 20px 100px;
 }
 
-
-
 .shop-name {
     display: flex;
     justify-content: center;
@@ -197,4 +195,42 @@ form select {
 
 .shop-dashboard .store {
     margin: 50px 0; 
+}
+
+#cart_items {
+    font-size: smaller;
+    position: relative;
+    top: -0.5em;
+    color: #c91697;
+}
+
+a #cart_items  {
+    text-decoration: none;
+}
+
+.all_shops {
+    display: flex;
+    justify-content: center;
+}
+
+.table {
+    width: 70%;
+}
+
+.table a {
+    text-decoration: none;
+    font-size: 0.7em;
+}
+
+.product-detail {
+    margin: 50px 100px;
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-detail img {
+    width: 70%;
+    border-radius: 10px;
 }

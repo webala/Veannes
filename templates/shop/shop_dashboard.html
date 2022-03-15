@@ -9,10 +9,12 @@
         <h2>{{shop.name}}</h2>
     </div>
 
-    <div class="actions">
-        <a href="{% url 'add_product' shop.name %}"><i class="uil uil-plus"></i> Add product</a>
-        <a href="#"><i class="uil uil-cog"></i> Shop Settings</a>
-    </div>
+    {% if isOwner %}
+        <div class="actions">
+            <a href="{% url 'add_product' shop.name %}"><i class="uil uil-plus"></i> Add product</a>
+            <a href="#"><i class="uil uil-cog"></i> Shop Settings</a>
+        </div>
+    {% endif %}
 
     <div class="store">
         {% for product in products %}
@@ -25,12 +27,14 @@
             <div class="product-description border-top">
                 <div>
                     <h3>{{product.name}}</h3>
-                    <p>Price: ksh 25</p>
+                    <p>Price: {{product.price}}</p>
                 </div>
                 
                 <div>
-                    <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm"><i class="uil uil-trash-alt"></i></a>
-                    <button class="btn btn-sm btn-outline-success update-cart">View</button>
+                    {% if isOwner %}
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-outline-danger btn-sm"><i class="uil uil-trash-alt"></i></a>
+                    {% endif %}
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-outline-success update-cart">View</a>
                 </div>   
             </div>
         </div>

@@ -5,12 +5,18 @@
     </div>
 
     <div class="nav-items">
+        <a href="{% url 'all_shops_list' %}" class="login-btn">Shops</a>
         {% if isVendor %}
             <a href="{% url 'shops' %}" class="login-btn">My Shops</a>
         {% endif %}
         <a href="#" class="login-btn">Categories</a>
-        <a href="{% url 'login' %}" class="login-btn">Login</a>
-        <a href="{% url 'register' %}" class="register-btn">Register</a>
-        <a href="/cart" class="cart-btn"><img src="{% static 'images/cart.png' %}" alt=""></a>
+
+        {% if not user.is_authenticated %}
+            <a href="{% url 'login' %}" class="login-btn">Login</a>
+        {% else %}
+            <a href="{% url 'logout' %}?next=/" class="login-btn">Logout</a>
+        {% endif %}
+        
+        <a href="{% url 'cart' %}"  class="cart-btn"><img src="{% static 'images/cart.png' %}" alt=""><span id="cart_items"></span></a>
     </div>
 </nav>

@@ -1,4 +1,3 @@
-from urllib import request
 from django.shortcuts import render
 from django.http import HttpResponseNotFound, HttpResponse
 from PIL import Image
@@ -83,15 +82,29 @@ def user_shops_list(request):
 
     return render(request, 'shop/user_shops.html', context)
 
+def all_shops_list(request):
+    shops = Shop.objects.all()
+
+    context = {
+        'shops': shops
+    }
+    return render(request, 'shop/all_shops.html', context)
+
 def shop_dashboard (request, shop_name):
     shop = Shop.objects.filter(name=shop_name).first()
+
+    if shop.owner == request.user:
+        isOwner = True
+    else:
+        isOwner = False
 
     products = list(Product.objects.filter(shop=shop))
 
     context = {
         'shop': shop,
         'logo': shop.name[0],
-        'products': products
+        'products': products,
+        'isOwner': isOwner
     }
 
     if shop:
@@ -131,3 +144,26 @@ def update_cart(request):
     
     return Response('Something went wrong somewhere', 400)
 
+@api_view(['GET'])
+def cart_items(request):
+    cart = cart_data(request)['cart']
+
+    if request.user.is_authenticated:
+        cart_items = cart.get_cart_items
+    else:
+        cart_items = cart['get_cart_items']
+
+    context = {
+        'cart_items': cart_items
+    }
+
+    return Response(context, 200)
+
+def product_detail(request, product_id):
+    product = Product.objects.get(id=product_id)
+
+    context = {
+        'product': product
+    }
+
+    return render(request, 'shop/product_detail.html', context)

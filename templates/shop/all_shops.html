@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="all_shops">
+    
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Product Type</th>
+        </tr>
+
+        {% for shop in shops %}
+        <tr>
+            <td><h2><a href="{% url 'shop_dashboard' shop.name %}">{{shop.name}}</a></h2></td>
+            <td><h3><a href="#">@{{shop.owner}}</a></h3></td>
+            <td><span>{{shop.products_type}}</span></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+  
+</div>
+
+{% endblock %}
